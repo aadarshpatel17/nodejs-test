@@ -1,0 +1,9 @@
+part 1
+
+	set status(accountType)
+	show user (status: 1)
+
+
+	follow/unfollow
+	post (read/ write)
+	specific show
