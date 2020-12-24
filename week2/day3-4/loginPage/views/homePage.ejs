@@ -17,12 +17,11 @@
       </div>
   
       <ul class="list-group">
-        <% data.map((item) => { %>
+        <% data.map((item, count=0) => { %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <%= item %>
-          <button type="button" class="btn btn-primary badge" id="follow-btn" onclick="followPerson()" >
-            Follow 
-            <!-- <span class="badge badge-light">+</span> -->
+          <button type="button" class="btn btn-primary badge follow-btn" onclick="clickCount(this.value)" value='<%= count++ %>'>
+            Follow
           </button>
         </li>
         <% }) %>
@@ -31,11 +30,11 @@
 
     <section>
       <form action="/homePage" method="POST" class="post">
-        <input type="text" name="title" value='<%= title %>' hidden>
+        <input type="text" id="title" name="title" value='<%= title %>' hidden>
         <button class="btn btn-primary">Write Posts</button>
         <div class="form-group write-post">
           <textarea name="post" cols="10" rows="5" class="form-control"></textarea>
-          <input type="submit" value="Send" class="btn btn-primary" onclick="writePost()" >
+          <input type="submit" value="Send" class="btn btn-primary" >
         </div>
       </form>
     </section>
@@ -50,9 +49,39 @@
 
 
     <script>
-      function followPerson() {
-        alert('run!!!')
+      var title = document.getElementById('title').value
+      let count = 0;
+      function clickCount(value) {
+        count++;
+        (count % 2 != 0) ? followPerson(value) : unFollowPerson(value);
       }
+
+      function followPerson(value) {
+        var followBtb = document.getElementsByClassName('follow-btn')
+        for(let i=0; i<followBtb.length; i++) {
+          if(value == i) {
+            alert(data[i])
+            followBtb[i].innerHTML = 'Unfollow'
+            break;
+          }
+        }
+      }
+      function unFollowPerson(value) {
+        var followBtb = document.getElementsByClassName('follow-btn')
+        for(let i=0; i<followBtb.length; i++) {
+          if(value == i) {
+            followBtb[i].innerHTML = 'Follow'
+            break;
+          }
+        }
+      }
+
+
+
+
+
+
+
     </script>
 
 
