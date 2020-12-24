@@ -2,10 +2,17 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-a {
-  color: #00B7FF;
+section {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
 }
-form {
+a {
+  color: rgb(19, 129, 253);
+}
+.signup, .login {
   display: flex;
   flex-direction: column;
   width: 20%;
@@ -14,11 +21,21 @@ form {
 .logOut {
   color: white;
 }
-.table {
-  background-color: red;
-  font-size: 20px;
-  padding: .5rem 1rem;
-}
 .badge {
   background-color: #17a2b8;
+}
+.logOut {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+}
+.logOut > h2 {
+  color: rgb(53, 53, 53)
+}
+.write-post {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
 }

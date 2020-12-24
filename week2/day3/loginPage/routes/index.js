@@ -15,14 +15,9 @@ isUserNameExist = (req, res, next) => {
     if(data) return res.render('homePage', { title: 'Welcome to Home Page', data: ''})
     else 
       return res.render('index', { title: 'Login Page', msg: 'Invalid Credentials!'})
-
   })
   next()
 }
-
-// isPasswordCorrect = (req, res, next) => {
-//   var 
-// }
 
 // Get index page
 router.get('/', (req, res, next) => {
@@ -43,7 +38,7 @@ router.post('/',isUserNameExist, (req, res, next) => {
           var name = req.body.username
           name = name.toUpperCase()
 
-          return res.render('homePage', { title: `Welcom to Home Page ${name}`, data: user })
+          return res.render('homePage', { title: `${name}`, data: user })
       }
   })
 })

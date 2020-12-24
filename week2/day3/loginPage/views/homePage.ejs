@@ -1,30 +1,60 @@
+<!-- follow btn -->
+
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Home Page</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <section>
+      <div class="logOut">
+        <h2>Welcome <%= title %>!</h2>
+        <button type="submit" class="btn btn-danger"><a href="./"><span style="color:white">Log Out</span></a></button>
+      </div>
+  
+      <ul class="list-group">
+        <% data.map((item) => { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <%= item %>
+          <button type="button" class="btn btn-primary badge" id="follow-btn" onclick="followPerson()" >
+            Follow 
+            <!-- <span class="badge badge-light">+</span> -->
+          </button>
+        </li>
+        <% }) %>
+      </ul>
+    </section>
 
-    <h2><%= title %></h2>
+    <section>
+      <form action="/homePage" method="POST" class="post">
+        <input type="text" name="title" value='<%= title %>' hidden>
+        <button class="btn btn-primary">Write Posts</button>
+        <div class="form-group write-post">
+          <textarea name="post" cols="10" rows="5" class="form-control"></textarea>
+          <input type="submit" value="Send" class="btn btn-primary" onclick="writePost()" >
+        </div>
+      </form>
+    </section>
+    
+    <section>
+      <form action="/homePage" method="GET" class="post">
+        <button class="btn btn-primary">Posts</button>
+        <div class="form-group read-post">
+        </div>
+      </form>
+    </section>
 
-    <ul class="list-group">
-      <%data.map((item) => { %>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <%= item %>
-        <button type="button" class="btn btn-primary badge" >
-          Follow 
-          <!-- <span class="badge badge-light">+</span> -->
-        </button>
-      </li>
-      <% }) %>
-    </ul>
+
+    <script>
+      function followPerson() {
+        alert('run!!!')
+      }
+    </script>
 
 
-
-
-    <button type="submit" class="btn btn-danger"><a href="./" class="logOut">Log Out</a></button>
   </body>
 </html>
