@@ -12,12 +12,8 @@ var followRouter = require('./routes/follow')
 var app = express();
 
 // //testing
-var homePageRouter = require('./routes/homePage')
-app.use('/homePage', homePageRouter)
-
-
-
-
+// var homePageRouter = require('./routes/homePage')
+// app.use('/homePage', homePageRouter)
 
 
 // view engine setup
@@ -33,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/signup', signupRouter);
+app.use('/follow', followRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

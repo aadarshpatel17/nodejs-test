@@ -7,8 +7,10 @@ var router = express.Router()
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-// router.post('/',urlencodedParser, (req, res, next) => {
-
-// })
+router.post('/',urlencodedParser, (req, res, next) => {
+    // console.log('follow.js');
+    // console.log(req.body);
+    // res.redirect('/');
+})
 
 module.exports = router;

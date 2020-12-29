@@ -20,9 +20,11 @@
         <% data.map((item, count=0) => { %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <%= item %>
-          <button type="button" class="btn btn-primary badge follow-btn" onclick="clickCount(this.value)" value='<%= count++ %>'>
-            Follow
-          </button>
+          <!-- <form action="/follow" method="post"> -->
+            <button type="submit" class="btn btn-primary badge follow-btn" onclick="clickCount(this.value)" value='<%= count++ %>'>
+              Follow
+            </button>
+          <!-- </form> -->
         </li>
         <% }) %>
       </ul>
@@ -49,6 +51,7 @@
 
 
     <script>
+
       var title = document.getElementById('title').value
       let count = 0;
       function clickCount(value) {
@@ -60,7 +63,6 @@
         var followBtb = document.getElementsByClassName('follow-btn')
         for(let i=0; i<followBtb.length; i++) {
           if(value == i) {
-            alert(data[i])
             followBtb[i].innerHTML = 'Unfollow'
             break;
           }
@@ -76,14 +78,6 @@
         }
       }
 
-
-
-
-
-
-
     </script>
-
-
   </body>
 </html>
