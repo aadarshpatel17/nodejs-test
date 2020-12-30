@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="618525950707-sd5ar0mdfc9soquur9asc3evhpn4o5pf.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <title>Document</title>
+    <style>
+        /* Style all font awesome icons */
+        .fa {
+        padding: 20px;
+        font-size: 30px;
+        width: 50px;
+        text-align: center;
+        text-decoration: none;
+        margin: 1rem 1rem;
+        }
+
+        /* Add a hover effect if you want */
+        .fa:hover {
+        opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <h1>GITHUB LOGIN PAGE!</h1>
+    
+    <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+    <!-- <div href="#" class="fa fa-github fa-lg" data-onsuccess="onSignIn"></a> -->
+    <a href="#" onclick="signOut();">Sign out from Github</a><br>
+
+
+    <script>
+        function onSignIn(gitUser) {
+            var id_token = gitUser.getAuthResponse().id_token;
+            console.log(id_token)
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/logingit');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function() {
+            console.log('Signed in as: ' + xhr.responseText);
+            if(xhr.responseText == 'success') {
+                signOut()
+                location.assign('/profile')
+            }
+            };
+            xhr.send(JSON.stringify({token: id_token}));
+        }
+    </script>
+
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+    </script>
+
+</body>
+</html>
